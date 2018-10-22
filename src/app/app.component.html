@@ -1,8 +1,14 @@
- <div *ngIf="forecast">
+ <div class="container" *ngIf="forecast">
     <h1>{{ forecast.city.name }}</h1>
      <div *ngFor="let pos of posDay; let i = index">
-        <p>{{ times[i] }}</p>
-        <p>Min: {{ forecast.list[pos].main.temp_min }}°    Max: {{ forecast.list[pos].main.temp_max }}°</p>
-        <p>{{ forecast.list[pos].weather[0].description }}</p>
+         <div class="card">
+            <h5 class="card-header card-title">{{ times[i] }}</h5>
+            <p class="card-text">Wind speed: {{ forecast.list[pos].wind.speed }} m/s</p>
+            <p class="card-text">Min: {{ forecast.list[pos].main.temp_min }}°    Max: {{ forecast.list[pos].main.temp_max }}°</p>
+            <p *ngIf="forecast.list[pos].rain['3h'] != null" class="card-text">Rain: {{ forecast.list[pos].rain["3h"] }} mm</p>
+            <p class="card-text">{{ capitalizeFirstLetter(forecast.list[pos].weather[0].description) }}</p>
+            <img src="http://openweathermap.org/img/w/{{forecast.list[pos].weather[0].icon}}.png" alt="" style="float:right;width:42px;height:42px;">
+        </div>
+        <br>
     </div>
 </div>
