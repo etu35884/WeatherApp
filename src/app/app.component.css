@@ -4,15 +4,4 @@ h1 {
 
 nav {
     margin: 20px;
-    display: flex;
-}
-
-nav .btun {
-    display: flex;
-    justify-content: left;
-}
-
-nav .bttwo {
-    display: flex;
-    justify-content: right;
 }

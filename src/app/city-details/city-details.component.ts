@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../weather.service';
 import { Forecast } from '../model/OpenWeatherModel';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -15,12 +17,15 @@ export class CityDetailsComponent implements OnInit {
   times = new Array();
   posDay = new Array();
 
-  constructor(private myWeatherService: WeatherService) { }
+  constructor(private myWeatherService: WeatherService, private route: ActivatedRoute, private location: Location) { }
 
   ngOnInit() {
+    let myStorage = window.localStorage;
+    const city = this.route.snapshot.paramMap.get('id');
+    const countryCode = myStorage.getItem(city);
     this.myWeatherService.apiBaseUrl = "http://api.openweathermap.org/data/2.5/forecast";
     this.myWeatherService.apiKey = "dc610799071eb1b6550099bb1b183297";
-    this.myWeatherService.getForecast("Namur", "BE").subscribe((data) => {
+    this.myWeatherService.getForecast(city, countryCode).subscribe((data) => {
       this.forecast = data;
       var date = new Date(this.forecast.list[0].dt * 1000);
       var datePrec = date;
