@@ -1,0 +1,14 @@
+<div *ngIf="weathers" class="container">
+    <div *ngFor="let weather of weathers">
+        <div class="card">
+            <div class="card-header">
+                {{ weather.name }}, {{ weather.sys.country }}
+            </div>
+            <div class="card-text">
+                <p>Min: {{ weather.main.temp_min }}° Max: {{ weather.main.temp_max }}°</p>
+                <p>{{ capitalizeFirstLetter(weather.weather[0].description) }}</p>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>

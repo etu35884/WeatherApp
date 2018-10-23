@@ -1,3 +1,26 @@
-<p>
-  cities-list works!
-</p>
+<div class="container">
+  <div class="card">
+    <div class="card-header">Cities</div>
+    <div *ngFor="let city of cities; let i = index;" class="card-text">
+      <p>{{keys[i]}}, {{city}} <a (click)="remove(i)" routerLink="/cities">Remove</a></p>
+    </div>
+  </div>
+  <form [formGroup]="cityForm" (ngSubmit)="onSubmit()">
+    <fieldset class="track">
+      <legend class="track">Track a new city</legend>
+      <div class="control-group">
+        <label>
+          City name:
+          <input type="text" formControlName="cityName">
+        </label>
+        <br>
+        <label>
+          Country code: (2 letters)
+          <input type="text" formControlName="countryCode">
+        </label>
+        <br>
+        <button type="submit" [disabled]="!cityForm.valid" class="btn btn-primary">Add</button>
+      </div>
+    </fieldset>
+  </form>
+</div>

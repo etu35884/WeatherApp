@@ -27,6 +27,7 @@ export interface Wind{
 
 export interface Sys{
     pod: string;
+    country: string;
 }
 
 export interface List {
@@ -58,4 +59,16 @@ export interface Forecast{
     cnt: number;
     list: List[];
     city: City;
+}
+
+
+export interface ActualWeather{
+    coord: Coord;
+    weather: Weather;
+    main: Main;
+    wind: Wind;
+    clouds: Clouds;
+    dt: number;
+    name: string;
+    sys: Sys;
 }
